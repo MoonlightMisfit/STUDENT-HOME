@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=document_search" />
+    <title>TNTS NEXUS - Portal Student</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ==================== TOP HEADER ==================== -->
+    <header>
+       
+        <div class="header-left">
+            <img src="logo.png" alt="Logo" class="header-logo">
+            <div class="header-title">
+                <h1>TNTS NEXUS</h1>
+                <p>SHS Student Portal</p>
+            </div>
+        </div>
+
+       
+        <div class="header-right" style="display: flex; gap: 15px; align-items: center;">
+            
+            <button type="button" class="icon-notifications" onclick="openNotificationModal()">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
+            </button>
+
+            <button type="button" class="icon-messages" onclick="openMessagesModal()">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            </button>
+            
+            <button type="button" class="icon-profile" onclick="openProfileModal()">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            </button>
+        </div>
+
+        <div class="profile-dropdown hidden" id="profile-dropdown">
+
+            <div class="profile-dropdown-list">
+
+                <button type="button" class="dropdown-item" onclick="viewProfileModal()">
+                    <i class="fa-solid fa-user fa-lg"></i> &nbsp; View Profile
+                </button>
+
+                <button type="button" class="dropdown-item" onclick="editProfileModal()">
+                    <i class="fa-solid fa-user-pen fa-lg"></i> &nbsp; Edit Profile
+                </button>
+
+                <div class="dropdown-divider">
+                </div>
+
+                <button type="button" class="dropdown-item sign-out" onclick="signoutModal()">
+                    <i class="fa-solid fa-right-from-bracket fa-lg"></i> &nbsp; Sign out
+                </button>
+
+            </div>
+        </div>
+    </header>
+
+    <div class="layout">
+        
+        <!-- ==================== SIDEBAR ==================== -->
+        <nav class="sidebar">
+            <ul class="sidebar-list" style="padding: 0 20px; margin-bottom: 10px;">
+                <li onclick="handleSidebarClick(this, 'blank')">
+                    <div class="sidebar-icon-svg">
+                        <svg viewBox="0 0 24 24" fill="black"><path d="M3 12l9-9 9 9h-3v8H6v-8H3z"/></svg>
+                    </div>
+                    <span>Home</span>
+                </li>
+            </ul>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title">Core Features</div>
+                <ul class="sidebar-list">
+                   
+                    <li onclick="handleSidebarClick(this, 'list')" id="nav-subjects">
+                        <div class="sidebar-icon-svg">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="8.5" cy="7" r="4" /><line x1="20" y1="8" x2="20" y2="14" /><line x1="17" y1="11" x2="23" y2="11" /></svg>
+                        </div>
+                        <span>Subjects</span>
+                    </li>
+                    <li onclick>
+                        <div class="sidebar-icon-svg">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><line x1="10" y1="9" x2="8" y2="9"></line></svg>
+                        </div>
+                        <span>Classworks</span>
+                    </li>
+                    <li onclick>
+                        <div class="sidebar-icon-svg">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><line x1="10" y1="9" x2="8" y2="9"></line></svg>
+                        </div>
+                        <span>Work Immersion</span>
+                    </li>
+                    <li onclick=>
+                        <div class="sidebar-icon-svg">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><line x1="10" y1="9" x2="8" y2="9"></line></svg>
+                        </div>
+                        <span>Learning Materials</span>
+                    </li>
+                    <li onclick>
+                        <div class="sidebar-icon-svg">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </div>
+                        <span>Grades</span>
+                    </li>
+                </ul>
+            </div>
+                
+            <div class="sidebar-section">
+                <div class="sidebar-title">Others</div>
+                <ul class="sidebar-list">
+                    <li onclick>
+                        <div class="sidebar-icon-svg">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2"><circle cx="12" cy="12" r="10" /><path d="M12 2a10 10 0 0 1 0 20V2z" fill="black"/></svg>
+                        </div>
+                        <span>Dark Mode</span>
+                    </li>
+                    <li onclick>
+                        <div class="sidebar-icon-svg">
+                            <svg viewBox="0 0 24 24" fill="black"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>
+                        </div>
+                        <span>Settings</span>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+       
+       <!-- MAIN CONTENT AREA -->
+<div class="main-content">
+
+    <div class="left-content">
+
+        <div class="student-profile">
+            <div class="profile-header">
+                Student Profile
+            </div>
+            
+            <div class="profile-body">
+                <div class="profile-avatar">
+                    <i class="fa-solid fa-circle-user"></i>
+                </div>
+
+                <div class="profile-info">
+                    <h2 id="summary-name">John M. Doe</h2>
+                    <p id="summary-id">1234567890</p>
+                    <p id="summary-section">Section</p>
+                    <p id="summary-email">newstudentemail@gmail.com</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="overview">
+            <h2 class="overview-header">
+                <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#1f1f1f"><path d="M186.67-813.33V-537.67-540v393.33-666.66 190.66-190.66Zm0 733.33q-27 0-46.84-19.83Q120-119.67 120-146.67v-666.66q0-27 19.83-46.84Q159.67-880 186.67-880H534l226 226v136q-15.67-7.33-32.33-12.17-16.67-4.83-34.34-7.5v-85H500.67v-190.66h-314v666.66H477q18.67 22 41.67 38.84Q541.67-91 569-80H186.67ZM736-224q30.67-30.67 30.67-76T736-376q-30.67-30.67-76-30.67T584-376q-30.67 30.67-30.67 76T584-224q30.67 30.67 76 30.67T736-224ZM864-49.33 756.56-156.67q-20.89 14-45.39 22t-51.17 8q-72.22 0-122.78-50.58-50.55-50.57-50.55-122.83 0-72.25 50.58-122.75 50.57-50.5 122.83-50.5 72.25 0 122.75 50.55 50.5 50.56 50.5 122.78 0 26.67-8 51.17t-22 45.39L910.67-96 864-49.33Z"/></svg> Overview
+            </h2>
+
+            <div class="stats-grid">
+                
+                <div class="stat-card">
+                    <p>Ongoing Classworks:</p>
+                        <div class="stat-value">
+                            <i class="fa-solid fa-clipboard-list"></i> 6
+                        </div>
+                </div>
+                    
+                <div class="stat-card">
+                    <p>Missed Classworks:</p>
+                        <div class="stat-value">
+                            <i class="fa-solid fa-clipboard-list"></i> 0
+                        </div>
+                </div>
+                
+                <div class="stat-card">
+                    <p>Finished Classworks:</p>
+                        <div class="stat-value">
+                            <i class="fa-solid fa-clipboard-list"></i> 0
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="classworks-container">
+            <div class="classworks-header">
+                <h3>Classworks</h3>
+                <button class="btn-view-all">View All</button>
+            </div>
+
+            <div class="classwork-card">
+                <div class="classwork-info">
+                    <h4>Subject Name</h4>
+                    <h5>Classwork Name</h5>
+                    <div class="date">04-20-2026, Friday</div>
+                </div>
+                        
+                <div class="classwork-action-dots">
+                    <div class="dot-pill"></div>
+                    <div class="dot-circle"></div>
+                    <div class="dot-circle"></div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="vertical-line"></div>
+
+    <div class="right-content">
+        <div class="grades-card">
+            <div class="grades-header">
+                <i class="fa-solid fa-square-poll-vertical"></i>
+                <span>Grades</span>
+            </div>
+
+            <div class="grade-item">
+                <span>Subject Name</span>
+                <span>Avg.</span>
+            </div>
+            
+            <div class="grade-item">
+                <span>Subject Name</span>
+                <span>Avg.</span>
+            </div>
+
+            <div class="grade-item">
+                <span>Subject Name</span>
+                <span>Avg.</span>
+            </div>
+
+            <button class="btn-view-all">View All</button>
+        </div>
+    </div>
+</div>
+    <!-- Modals -->
+
+    <div class="modal-backdrop hidden" id="view-profile">
+
+        <div class="modal-container">
+
+            <div class="view-profile-header">
+                <h1> Student Profile </h1>
+                <button class="exit-button" onclick="closeViewProfileModal()">
+                    <i class="fa-solid fa-x"></i>
+                </button>
+            </div>
+
+            <div class="profile-content">
+
+                <div class="student-profile">
+                    <div class="profile-body">
+
+                        <div class="profile-avatar">
+                            <i class="fa-solid fa-circle-user"></i>
+                        </div>
+
+                        <div class="profile-info">
+                            <h2 id="summary-name">John M. Doe</h2>
+                            <p id="summary-id">1234567890</p>
+                            <p id="summary-section">Section</p>
+                            <p id="summary-email">newstudentemail@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="full-information"> 
+                    <div class="section-header">Full Information</div>
+                        
+                    <div class="info-grid">
+
+                        <div class="info-item">
+                            <strong>Full Name</strong>
+                            <p id="student-fullname">Doe, John Maverick</p>
+                        </div>
+
+                        <div class="info-item">
+                            <strong>Sex</strong>
+                            <p id="student-sex">Male</p>
+                        </div>
+
+                        <div class="info-item">
+                            <strong>Track</strong>
+                            <p id="student-track">Academics</p>
+                        </div>
+
+                        <div class="info-item">
+                            <strong>Section</strong>
+                            <p id="student-section">Lmao</p>
+                        </div>
+
+                        <div class="info-item">
+                            <strong>Guardian's Contact No.</strong>
+                            <p id="student-contact">Lmao</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subjects-section">
+                    <div class="section-header">Subjects Joined</div>
+                    
+                    <div class="subject-card">
+
+                        <div class="subject-left">
+                            <h3 id="subject-title">Subject Name</h3>
+                            <p id="subject-teacher">Teacher : Name</p>
+                        </div>
+
+                        <div class="subject-right">
+                            <h3 id="subject-section-name">Section</h3>
+                            <p id="subject-schedule">Mon,Tue,Wed</p>
+                        </div>
+
+                    </div>
+
+                    <div class="subject-card">
+
+                        <div class="subject-left">
+                            <h3 id="subject-title">Subject Name</h3>
+                            <p id="subject-teacher">Teacher : Name</p>
+                        </div>
+
+                        <div class="subject-right">
+                            <h3 id="subject-section-name">Section</h3>
+                            <p id="subject-schedule">Mon,Tue,Wed</p>
+                        </div>
+
+                    </div>
+
+                    <div class="subject-card">
+
+                        <div class="subject-left">
+                            <h3 id="subject-title">Subject Name</h3>
+                            <p id="subject-teacher">Teacher : Name</p>
+                        </div>
+
+                        <div class="subject-right">
+                            <h3 id="subject-section-name">Section</h3>
+                            <p id="subject-schedule">Mon,Tue,Wed</p>
+                        </div>
+
+                    </div>
+
+                    <div class="subject-card">
+
+                        <div class="subject-left">
+                            <h3 id="subject-title">Subject Name</h3>
+                            <p id="subject-teacher">Teacher : Name</p>
+                        </div>
+
+                        <div class="subject-right">
+                            <h3 id="subject-section-name">Section</h3>
+                            <p id="subject-schedule">Mon,Tue,Wed</p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+          
+    <div class="modal-backdrop hidden" id="edit-profile">
+
+        <div class="edit-modal-container">
+
+            <div class="edit-profile-header">
+                <button class="exit-button" onclick="closeEditProfileModal()">
+                    <i class="fa-solid fa-x"></i>
+                </button>
+            </div>
+
+            <div class="edit-profile-content">
+                <h2> Edit Profile </h2>
+                <i class="fa-solid fa-circle-user" id="profileavatar"></i>
+                <button class="upload-button"> Upload </button>
+                <p> (.jpeg or .png, max. 512kb) </p>
+
+                <button class="save-button"> Save </button>
+            </div>
+            
+        </div>
+    </div>
+        
+
+
+    <script src="script.js"></script>
+</body>
+</html>
